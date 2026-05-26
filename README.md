@@ -53,3 +53,12 @@ for i = 1:chunkSize:totalBytes
     endIdx = min(i + chunkSize - 1, totalBytes);
     write(t, FileData(i:endIdx)); % Push binary stream to TCP socket
 end
+```
+**Server-side Header Parsing:**
+```matlab
+% Parse custom header to extract filename length before reading payload
+while server.NumBytesAvailable < 1, pause(0.1); end
+name_length = read(server, 1, "uint8"); 
+
+while server.NumBytesAvailable < name_length, pause(0.1); end
+received_filename = char(read(server, name_length, "uint8"));
