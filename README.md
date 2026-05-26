@@ -13,7 +13,7 @@ This project successfully implemented a **Client-Server** system on the **MATLAB
 * **Nguyen Van Dat** — *Main responsibilities:* Presentation, Wireshark testing support and PowerPoint report interface design.
 
 ---
-## 🏗️ System Architecture & Protocol Design
+## System Architecture & Protocol Design
 
 To prevent packet fragmentation and "sticky packets" common in continuous TCP streams, we engineered a **Custom Application Layer Protocol**:
 
@@ -24,7 +24,7 @@ To prevent packet fragmentation and "sticky packets" common in continuous TCP st
 The system utilizes a sequential Client-Server model where the **Client** initiates the TCP socket, processes the file into binary chunks, and transmits them, while the **Server** continuously listens on port `5001`, parses the custom header, and reconstructs the byte stream directly into local storage.
 
 ---
-## 🔍 Wireshark Network Analysis (Key Highlights)
+## Wireshark Network Analysis (Key Highlights)
 
 The core value of this project lies in the empirical validation of the TCP/IP protocol suite using Wireshark.
 
@@ -33,4 +33,13 @@ We successfully captured the strict connection initiation sequence:
 * `[SYN]` - Client requests a new connection.
 * `[SYN, ACK]` - Server acknowledges and accepts.
 * `[ACK]` - Client confirms, establishing a reliable socket.
-<img width="975" height="548" alt="image" src="https://github.com/user-attachments/assets/1c13828a-5ba2-4f66-bd50-d273c72abbf7" />
+<img width="891" height="478" alt="image" src="https://github.com/user-attachments/assets/fc9d1fd4-affb-4f86-be2e-d31519b6793d" />
+
+### 2. Error Control & Reliability Testing
+Rather than just testing in ideal conditions, we analyzed the network under physical fluctuations. Wireshark successfully captured TCP's self-healing mechanisms:
+* **In-order Delivery:** Sequence Numbers incrementing linearly alongside exact `ACK` responses.
+* **Fault Tolerance:** Captured `TCP Dup ACK` and `TCP Retransmission` flags, proving the protocol's ability to automatically detect packet loss and retransmit missing payloads without corrupting the final file.
+<img width="2539" height="740" alt="Screenshot (547)" src="https://github.com/user-attachments/assets/8e9a3477-f543-402a-8bf6-9e272ce4a856" />
+
+<img width="2560" height="745" alt="Screenshot (540)" src="https://github.com/user-attachments/assets/a6ddfed7-5171-4c80-83b1-ce7bd3447189" />
+
