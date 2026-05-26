@@ -41,7 +41,8 @@ Rather than just testing in ideal conditions, we analyzed the network under phys
 * **Fault Tolerance:** Captured `TCP Dup ACK` and `TCP Retransmission` flags, proving the protocol's ability to automatically detect packet loss and retransmit missing payloads without corrupting the final file.
 <img width="2539" height="740" alt="Screenshot (547)" src="https://github.com/user-attachments/assets/8e9a3477-f543-402a-8bf6-9e272ce4a856" />
 
-<img width="2560" height="745" alt="Screenshot (540)" src="https://github.com/user-attachments/assets/a6ddfed7-5171-4c80-83b1-ce7bd3447189" />
+<img width="2560" height="763" alt="Screenshot (510)" src="https://github.com/user-attachments/assets/5f93aa95-9199-4f6c-aa96-2889355d759d" />
+
 
 ## Core Implementation Snippets (MATLAB)
 
