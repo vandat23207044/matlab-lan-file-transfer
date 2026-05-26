@@ -2,11 +2,11 @@ clc; clear all; close all;
 
 HOST = '0.0.0.0';  
 PORT = 5001;       
-t = tcpip(HOST, PORT, 'NetworkRole', 'server');
+t = tcpserver(HOST, PORT, 'NetworkRole', 'server');
 t.InputBufferSize = 10000000; % Để hẳn 10MB cho thoải mái nhận file bự
 
 disp(['[*] Đang lắng nghe trên cổng ', num2str(PORT), '...']);
-fopen(t); 
+open(t); 
 disp('[+] Đã kết nối với Client! Đang phân tích gói tin...');
 
 % -----------------------------------------------------
@@ -17,13 +17,13 @@ disp('[+] Đã kết nối với Client! Đang phân tích gói tin...');
 while t.BytesAvailable < 1
     pause(0.1);
 end
-name_length = fread(t, 1, 'uint8');
+name_length = read(t, 1, 'uint8');
 
 % 2. Chờ và đọc số lượng byte đúng bằng name_length để lấy Tên file
 while t.BytesAvailable < name_length
     pause(0.1);
 end
-name_bytes = fread(t, name_length, 'uint8');
+name_bytes = read(t, name_length, 'uint8');
 
 % Chuyển mảng số nhị phân vừa nhận thành chuỗi ký tự (string)
 received_filename = char(name_bytes');
@@ -41,12 +41,12 @@ pause(0.5);
 
 while true
     if t.BytesAvailable > 0
-        data = fread(t, t.BytesAvailable, 'uint8');
+        data = read(t, t.BytesAvailable, 'uint8');
         fwrite(fid, data, 'uint8');
     else
         pause(0.1);
     end
-    
+
     if strcmp(t.Status, 'closed') && t.BytesAvailable == 0
         break;
     end
@@ -54,6 +54,6 @@ end
 
 fclose(fid);
 disp(['[*] Đã tải và lưu hoàn chỉnh file: ', save_filename]);
-fclose(t);
+close(t);
 delete(t);
 clear t;
