@@ -82,6 +82,6 @@ received_filename = char(read(server, name_length, "uint8"));
 
 * **Performance:** Achieved a 100% transmission success rate within the LAN environment with zero data corruption.
 * **Flexibility:** Successfully transferred plain text (`.txt`), multimedia, and source code files by relying strictly on binary byte-stream transmission.
-* **Future Improvements:** * Transition from a single-threaded architecture to an asynchronous **Multi-threaded Server**.
+* **Future Improvements:** Transition from a single-threaded architecture to an asynchronous **Multi-threaded Server**.
   * Integrate payload encryption (AES) and Application-layer compression (GZIP) to optimize bandwidth.
   * Expand network simulation using tools like NS-3 to evaluate TCP Congestion Control algorithms (Reno, Cubic) under extreme jitter.
