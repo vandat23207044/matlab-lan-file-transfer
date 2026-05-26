@@ -43,3 +43,13 @@ Rather than just testing in ideal conditions, we analyzed the network under phys
 
 <img width="2560" height="745" alt="Screenshot (540)" src="https://github.com/user-attachments/assets/a6ddfed7-5171-4c80-83b1-ce7bd3447189" />
 
+## Core Implementation Snippets (MATLAB)
+
+**Client-side Chunking Algorithm:**
+```matlab
+% Limit chunk size to 5MB to optimize network buffer
+chunkSize = 5242880; 
+for i = 1:chunkSize:totalBytes
+    endIdx = min(i + chunkSize - 1, totalBytes);
+    write(t, FileData(i:endIdx)); % Push binary stream to TCP socket
+end
