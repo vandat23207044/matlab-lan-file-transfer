@@ -1,12 +1,6 @@
 # LAN File Transfer Application & Network Traffic Analysis via Wireshark
 
-[English](#-english-version) | [Tiếng Việt](#-tiếng-việt)
-
----
-
-## 🇬🇧 English Version
-
-Final Project — **Data Communications** Faculty of Electronics and Telecommunications, University of Science (VNU-HCM)
+Final Project — **Data Communications** | Faculty of Electronics and Telecommunications, University of Science (VNU-HCM)
 
 This project successfully implemented a **Client-Server** system on the **MATLAB** platform for transferring multi-format files within a Local Area Network (LAN) using the **TCP/IP** protocol. In addition, **Wireshark** was utilized to monitor, capture and perform in-depth analysis of packet structures at both the Transport Layer and Network Layer.
 
